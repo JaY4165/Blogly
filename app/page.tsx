@@ -1,11 +1,32 @@
-"use client";
-
 import Image from "next/image";
 import wallbg from "../public/wallbg.jpg";
 import { Badge } from "@/components/ui/badge";
 import backg from "../public/background.jpg";
 
-export default function Home() {
+export default async function Home() {
+  // const { data } = await fetch(String(process.env.HYGRAPH_CMS_ENDPOINT), {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     query: `
+  //     query getPostTitle {
+  //       posts {
+  //         title
+  //       }
+  //     }
+  //     `,
+  //   }),
+  //   next: { revalidate: 10 },
+  // })
+  //   .then((res) => res.json())
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+
+  // console.log(data);
+
   return (
     <main className="h-screen flex items-center flex-col pt-20 px-5 sm:px-10">
       <h3 className="text-lg font-normal tracking-wider pb-2">The blog</h3>
@@ -92,7 +113,7 @@ export default function Home() {
               </div>
             </div>
 
-            <p className="text-xs pt-1 md:text-sm font-normal">
+            <p className="text-xs pt-1 md:text-sm font-normal line-clamp-2">
               How do you create compelling presentations that wow your
               colleagues and impress your managers?
             </p>
@@ -149,7 +170,7 @@ export default function Home() {
               </div>
             </div>
 
-            <p className="text-xs pt-1 md:text-sm font-normal">
+            <p className="text-xs pt-1 md:text-sm font-normal line-clamp-2">
               How do you create compelling presentations that wow your
               colleagues and impress your managers?
             </p>
@@ -206,7 +227,7 @@ export default function Home() {
               </div>
             </div>
 
-            <p className="text-xs pt-1 md:text-sm font-normal">
+            <p className="text-xs pt-1 md:text-sm font-normal line-clamp-2">
               How do you create compelling presentations that wow your
               colleagues and impress your managers?
             </p>
@@ -263,7 +284,7 @@ export default function Home() {
               </div>
             </div>
 
-            <p className="text-xs pt-1 md:text-sm font-normal">
+            <p className="text-xs pt-1 md:text-sm font-normal line-clamp-2">
               How do you create compelling presentations that wow your
               colleagues and impress your managers?
             </p>
@@ -320,7 +341,7 @@ export default function Home() {
               </div>
             </div>
 
-            <p className="text-xs pt-1 md:text-sm font-normal">
+            <p className="text-xs pt-1 md:text-sm font-normal line-clamp-2">
               How do you create compelling presentations that wow your
               colleagues and impress your managers?
             </p>
@@ -377,7 +398,7 @@ export default function Home() {
               </div>
             </div>
 
-            <p className="text-xs pt-1 md:text-sm font-normal">
+            <p className="text-xs pt-1 md:text-sm font-normal line-clamp-2">
               How do you create compelling presentations that wow your
               colleagues and impress your managers?
             </p>
@@ -434,7 +455,7 @@ export default function Home() {
               </div>
             </div>
 
-            <p className="text-xs pt-1 md:text-sm font-normal">
+            <p className="text-xs pt-1 md:text-sm font-normal line-clamp-2">
               How do you create compelling presentations that wow your
               colleagues and impress your managers?
             </p>
@@ -491,7 +512,7 @@ export default function Home() {
               </div>
             </div>
 
-            <p className="text-xs pt-1 md:text-sm font-normal">
+            <p className="text-xs pt-1 md:text-sm font-normal line-clamp-2">
               How do you create compelling presentations that wow your
               colleagues and impress your managers?
             </p>
@@ -548,7 +569,7 @@ export default function Home() {
               </div>
             </div>
 
-            <p className="text-xs pt-1 md:text-sm font-normal">
+            <p className="text-xs pt-1 md:text-sm font-normal line-clamp-2">
               How do you create compelling presentations that wow your
               colleagues and impress your managers?
             </p>
@@ -605,7 +626,7 @@ export default function Home() {
               </div>
             </div>
 
-            <p className="text-xs pt-1 md:text-sm font-normal">
+            <p className="text-xs pt-1 md:text-sm font-normal line-clamp-2">
               How do you create compelling presentations that wow your
               colleagues and impress your managers?
             </p>
@@ -662,7 +683,7 @@ export default function Home() {
               </div>
             </div>
 
-            <p className="text-xs pt-1 md:text-sm font-normal">
+            <p className="text-xs pt-1 md:text-sm font-normal line-clamp-2">
               How do you create compelling presentations that wow your
               colleagues and impress your managers?
             </p>
