@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import wallbg from "../public/wallbg.jpg";
 import { Badge } from "@/components/ui/badge";
