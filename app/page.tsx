@@ -3,7 +3,31 @@ import wallbg from "../public/wallbg.jpg";
 import { Badge } from "@/components/ui/badge";
 import backg from "../public/background.jpg";
 
-export default function Home() {
+export default async function Home() {
+  const { data } = await fetch(String(process.env.HYGRAPH_CMS_ENDPOINT), {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+    query getPosts {
+      posts {
+        edges {
+          node {
+            title
+            excerpt
+            slug
+            date
+          }
+        }
+      }
+    }
+  `,
+    }),
+    next: { revalidate: 10 },
+  }).then((res) => res.json());
+
   return (
     <section className="h-auto flex items-center flex-col pt-20 px-5 sm:px-10 pb-20">
       <h3 className="text-lg font-normal tracking-wider pb-2">The blog</h3>
