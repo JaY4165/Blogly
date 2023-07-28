@@ -3,39 +3,11 @@ import wallbg from "../public/wallbg.jpg";
 import { Badge } from "@/components/ui/badge";
 import backg from "../public/background.jpg";
 
-export default async function Home() {
-  // const { data } = await fetch(String(process.env.HYGRAPH_CMS_ENDPOINT), {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify({
-  //     query: `
-  //     query getPostTitle {
-  //       posts {
-  //         title
-  //       }
-  //     }
-  //     `,
-  //   }),
-  //   next: { revalidate: 10 },
-  // })
-  //   .then((res) => res.json())
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-
-  // console.log(data);
-
+export default function Home() {
   return (
-    <main className="h-screen flex items-center flex-col pt-20 px-5 sm:px-10">
+    <section className="h-auto flex items-center flex-col pt-20 px-5 sm:px-10 pb-20">
       <h3 className="text-lg font-normal tracking-wider pb-2">The blog</h3>
       <div className="flex flex-col items-center">
-        {/* <Image
-            src={blacksplash}
-            alt="blacksplash"
-            className="absolute left-[21rem] bottom-7 h-10 w-16 scale-x-75 rotate-45"
-          /> */}
         <h1 className="text-xl md:text-5xl  tracking-wider font-semibold">
           Writings from our team
         </h1>
@@ -65,7 +37,7 @@ export default async function Home() {
             </h1>
             <p className="text-xs pr-2 pt-1 md:text-sm font-light  text-white">
               How do you create compelling presentations that wow your
-              colleagues and impress your managers?
+              colleagues and impress your managers ?
             </p>
             <div className="flex flex-row space-x-2 pt-2">
               <Badge variant="outline" className="text-white dark:border-white">
@@ -81,7 +53,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 pt-10 gap-8">
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 pt-10 gap-10 pb-20">
         <div className="">
           <Image src={backg} alt="bg" className="rounded-xl" />
           <div className="flex flex-row space-x-8 pt-4 pb-2">
@@ -710,6 +682,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-    </main>
+    </section>
   );
 }
