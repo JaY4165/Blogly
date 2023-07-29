@@ -6,6 +6,14 @@ import { getAllPosts } from "@/graphql/services";
 export default async function Home() {
   const postsData: any = await getAllPosts();
 
+  const firstPost: any = postsData[0];
+
+  const [, ...otherPosts]: any = postsData;
+
+  console.log("changed values", otherPosts);
+
+  const featuredPost: any = firstPost.node;
+
   return (
     <section className="h-auto flex items-center flex-col pt-20 px-5 sm:px-10 pb-20">
       <h3 className="text-lg font-normal tracking-wider pb-2">The blog</h3>
@@ -17,10 +25,10 @@ export default async function Home() {
           The latest industry news, interviews, technologies, and resources.
         </p>
       </div>
-      <Hero />
+      <Hero postsDataForHero={featuredPost} />
 
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 pt-10 gap-10 pb-20">
-        <Posts postsData={postsData} />
+        <Posts postsData={otherPosts} />
       </section>
     </section>
   );
