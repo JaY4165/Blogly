@@ -1,18 +1,17 @@
 import Hero from "@/components/homeComponents/Hero";
 import Posts from "@/components/homeComponents/Posts";
 import { getAllPosts } from "@/graphql/services";
+import { Edge, Node } from "@/types/types";
 // import { Edge } from "@/types";
 
 export default async function Home() {
-  const postsData: any = await getAllPosts();
+  const postsData: Edge[] = await getAllPosts();
 
-  const firstPost: any = postsData[0];
+  const firstPost: Edge = postsData[0];
 
-  const [, ...otherPosts]: any = postsData;
+  const [, ...otherPosts]: Edge[] = postsData;
 
-  console.log("changed values", otherPosts);
-
-  const featuredPost: any = firstPost.node;
+  const featuredPost: Node = firstPost.node;
 
   return (
     <section className="h-auto flex items-center flex-col pt-20 px-5 sm:px-10 pb-20">
@@ -27,7 +26,7 @@ export default async function Home() {
       </div>
       <Hero postsDataForHero={featuredPost} />
 
-      <section className="grid grid-cols-1 sm:grid-cols-2 sm:grid-flow-row md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 xl:grid-flow-row pt-10 gap-10 pb-20">
+      <section className="grid grid-cols-1 sm:grid-cols-2 sm:grid-flow-row md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 xl:grid-flow-row pt-10 gap-14 pb-20">
         <Posts postsData={postsData} />
       </section>
     </section>
