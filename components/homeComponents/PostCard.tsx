@@ -22,8 +22,8 @@ const PostCard = ({ postsCardData }: { postsCardData: any }) => {
                 src={post?.node?.featuredImage?.url}
                 alt="bg"
                 width={1000}
-                height={10}
-                className="rounded-xl object-contain"
+                height={1000}
+                className="rounded-xl object-contain overflow-hidden"
               />
 
               <div className="inline-flex justify-start space-x-8 pt-4 pb-2">
