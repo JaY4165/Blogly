@@ -12,7 +12,7 @@ const PostCard = ({ postsCardData }: { postsCardData: any }) => {
   // console.log(postsCardData);
 
   return (
-    <div>
+    <>
       {postsCardData ? (
         postsCardData.map((post: any) => (
           <div className="overflow-hidden" key={post.node.title}>
@@ -20,7 +20,7 @@ const PostCard = ({ postsCardData }: { postsCardData: any }) => {
               src={post?.node?.featuredImage?.url}
               alt="bg"
               width={1000}
-              height={1000}
+              height={10}
               className="rounded-xl object-contain"
             />
 
@@ -76,7 +76,7 @@ const PostCard = ({ postsCardData }: { postsCardData: any }) => {
       ) : (
         <h1 className="text-xl">loading...</h1>
       )}
-    </div>
+    </>
   );
 };
 

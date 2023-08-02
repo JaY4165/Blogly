@@ -10,7 +10,7 @@ function FooterComp() {
           Lets get started on something great.
         </h1>
         <h3 className="dark:text-white text-black text-center">
-          Join over 40000+ startups already growing with blogly
+          Join over 40000+ developers already growing with blogly
         </h3>
         {/* <Button
           variant={"outline"}
