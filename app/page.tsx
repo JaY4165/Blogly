@@ -27,7 +27,7 @@ export default async function Home() {
       <Hero postsDataForHero={featuredPost} />
 
       <section className="grid grid-cols-1 sm:grid-cols-2 sm:grid-flow-row md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 xl:grid-flow-row pt-10 gap-14 pb-20">
-        <Posts postsData={postsData} />
+        <Posts postsData={otherPosts} />
       </section>
     </section>
   );

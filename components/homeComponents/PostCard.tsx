@@ -1,17 +1,14 @@
+import { Edge } from "@/types/types";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
-import backg from "@/public/background.jpg";
 import Link from "next/link";
-// import { Edge } from "@/types";
 
 export const splitData = (dateToSplit: string) => {
   const date = dateToSplit.split("T")[0];
   return `${date}`;
 };
 
-const PostCard = ({ postsCardData }: { postsCardData: any }) => {
-  // console.log(postsCardData);
-
+const PostCard = ({ postsCardData }: { postsCardData: Edge[] }) => {
   return (
     <>
       {postsCardData ? (
@@ -34,7 +31,7 @@ const PostCard = ({ postsCardData }: { postsCardData: any }) => {
                 </div>
                 <div>
                   <p className="list-item text-sm font-medium ">
-                    {splitData(post?.node?.createdAt)}
+                    {splitData(String(post?.node?.createdAt))}
                   </p>
                 </div>
               </div>

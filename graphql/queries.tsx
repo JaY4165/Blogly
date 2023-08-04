@@ -30,9 +30,9 @@ export const queryToGetAllPosts = gql`
   }
 `;
 
-export const getPostBySlug = gql`
-  query postBySlug {
-    post(where: { slug: String! }) {
+export const queryToGetPostBySlug = gql`
+  query postBySlug($slug: String!) {
+    post(where: { slug: $slug }) {
       author {
         id
         name

@@ -1,6 +1,7 @@
 import { GraphQLClient } from "graphql-request";
-import { queryToGetAllPosts } from "./queries";
-import { Data, Edge, PostsConnection } from "@/types/types";
+import { queryToGetAllPosts, queryToGetPostBySlug } from "./queries";
+import { Data, Edge, Post, PostsConnection } from "@/types/types";
+import Slug from "@/app/post/[slug]/page";
 
 export const client = new GraphQLClient(
   String(process.env.HYGRAPH_CMS_ENDPOINT)
@@ -9,5 +10,13 @@ export const client = new GraphQLClient(
 export const getAllPosts = async () => {
   const response: Data = await client.request(queryToGetAllPosts);
   const res: Edge[] = response.postsConnection.edges;
+  return res;
+};
+
+export const getPostBySlug = async (slugName: string) => {
+  const response: Post = await client.request(queryToGetPostBySlug, {
+    slug: slugName,
+  });
+  const res: Post = response;
   return res;
 };
