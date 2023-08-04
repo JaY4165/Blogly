@@ -69,5 +69,18 @@ export interface Category {
 }
 
 export interface Content {
-    html: string;
+    json: JSON;
+}
+
+export interface JSON {
+    children: JSONChild[];
+}
+
+export interface JSONChild {
+    type: string;
+    children: ChildChild[];
+}
+
+export interface ChildChild {
+    text: string;
 }

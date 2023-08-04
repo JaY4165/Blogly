@@ -14,9 +14,9 @@ export const getAllPosts = async () => {
 };
 
 export const getPostBySlug = async (slugName: string) => {
-  const response: Post = await client.request(queryToGetPostBySlug, {
+  const response: any = await client.request(queryToGetPostBySlug, {
     slug: slugName,
   });
-  const res: Post = response;
+  const res: Post = response.post;
   return res;
 };

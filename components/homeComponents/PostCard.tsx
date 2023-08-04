@@ -9,6 +9,9 @@ export const splitData = (dateToSplit: string) => {
 };
 
 const PostCard = ({ postsCardData }: { postsCardData: Edge[] }) => {
+
+  
+
   return (
     <>
       {postsCardData ? (
