@@ -6,7 +6,6 @@ import bg from "@/public/wallbg.jpg";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { splitData } from "@/components/homeComponents/PostCard";
-import { type } from "os";
 import ContentRenderer from "@/components/homeComponents/ContentRederer";
 
 export default async function Slug({
@@ -22,7 +21,7 @@ export default async function Slug({
 
   const blogCategories: Category[] = postData?.categories;
 
-  console.log(postData?.content);
+  // console.log(postData?.content?.json);
 
   return (
     <div className="px-5 sm:px-10 pt-20">
@@ -52,22 +51,21 @@ export default async function Slug({
         height={1000}
       />
       <div className="flex pt-5 items-center justify-start flex-row space-x-2">
-        {blogCategories.map((category) => {
-          return (
-            <>
+        {blogCategories.map(
+          (category: any, index: any): React.JSX.Element => (
+            <div key={index}>
               <Badge
                 variant="outline"
-                key={category.slug}
                 className="dark:border-white border-black"
               >
                 {category.name}
               </Badge>
-            </>
-          );
-        })}
+            </div>
+          )
+        )}
       </div>
 
-      <section className="">
+      <section className="pb-14">
         <h1 className="text-5xl font-extralight pt-5">{postData?.title}</h1>
         <ContentRenderer content={postData?.content} />
       </section>

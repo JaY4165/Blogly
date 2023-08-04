@@ -5,7 +5,6 @@ import { Node } from "@/types/types";
 import Link from "next/link";
 
 const Hero = ({ postsDataForHero }: { postsDataForHero: Node }) => {
-  // console.log(postsDataForHero);
   return (
     <div className="relative pt-8 ">
       <Link href={`/post/${postsDataForHero?.slug}`}>

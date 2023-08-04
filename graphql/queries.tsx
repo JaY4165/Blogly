@@ -46,7 +46,7 @@ export const queryToGetPostBySlug = gql`
       title
       excerpt
       content {
-        html
+        json
       }
       featuredImage {
         url
