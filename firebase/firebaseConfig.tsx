@@ -13,7 +13,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 export const provider = new GoogleAuthProvider();
 provider.addScope(String(process.env.FIREBASE_GOOGLE_API));
 
@@ -30,3 +30,5 @@ signInWithPopup(auth, provider)
     const email = error.customData.email;
     const credential = GoogleAuthProvider.credentialFromError(error);
   });
+
+

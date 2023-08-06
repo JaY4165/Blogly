@@ -20,6 +20,7 @@ import Link from "next/link";
 import { ModeToggle } from "./ui/themeToggleButton";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import LogInOutBtn from "./LogInOutBtn";
 
 const Navbar = () => {
   return (
@@ -100,13 +101,9 @@ const Navbar = () => {
             <ModeToggle />
           </NavigationMenuItem>
           <NavigationMenuItem className="px-3">
-            <Link href="/login" legacyBehavior passHref>
-              <NavigationMenuLink className={"bg-none"}>
-                <Button className="bg-black text-white dark:bg-white dark:text-black outline-none border-none dark:hover:bg-white hover:bg-black hover:text-white">
-                  Login
-                </Button>
-              </NavigationMenuLink>
-            </Link>
+            <NavigationMenuLink className={"bg-none"}>
+              <LogInOutBtn />
+            </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

@@ -5,18 +5,18 @@ import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { UserCredential, User } from "firebase/auth";
 
-interface AuthContextProps {
+export interface AuthContextProps {
   user: User | null;
   googleSignIn: () => void;
   logOut: () => void;
 }
 
-const AuthContext = createContext<AuthContextProps | undefined>(undefined);
+const AuthContext = createContext<AuthContextProps | null>(null);
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
-  const googleSignIn = () => {
+  const googleSignIn = async () => {
     signInWithPopup(auth, provider)
       .then((result: UserCredential) => {
         setUser(result.user);
@@ -26,7 +26,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       });
   };
 
-  const logOut = () => {
+  const logOut = async () => {
     signOut(auth)
       .then(() => {
         setUser(null);
