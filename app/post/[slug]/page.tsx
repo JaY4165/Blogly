@@ -2,7 +2,7 @@ import { getPostBySlug } from "@/graphql/services";
 import { Category, Post } from "@/types/types";
 import Image from "next/image";
 import React from "react";
-import bg from "@/public/wallbg.jpg";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { splitData } from "@/components/homeComponents/PostCard";
@@ -50,6 +50,7 @@ export default async function Slug({
         width={1000}
         height={1000}
       />
+
       <div className="flex pt-5 items-center justify-start flex-row space-x-2">
         {blogCategories.map(
           (category: any, index: any): React.JSX.Element => (

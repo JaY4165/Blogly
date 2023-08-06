@@ -62,8 +62,6 @@ const ContentRenderer: React.FC<ContentProps> = ({
 }): React.JSX.Element => {
   const { children } = content.json;
 
-  // console.log("This is :", content.json);
-
   return (
     <>
       {children.map((node: any, index: any) => {
