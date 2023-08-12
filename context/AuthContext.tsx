@@ -1,6 +1,6 @@
 "use client";
 
-import {
+import React, {
   ReactNode,
   createContext,
   useContext,
@@ -10,14 +10,19 @@ import {
 import {
   signInWithPopup,
   GoogleAuthProvider,
+  UserCredential,
   User,
   signOut,
 } from "firebase/auth";
 import { auth } from "@/firebase/firebaseConfig";
 
-// interface AuthContextType = {};
+type AuthContextType = {
+  user: User | null;
+  logOut: () => void;
+  signInWithGoogle: () => void;
+};
 
-const AuthContext = createContext(undefined);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -26,16 +31,16 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
-      .then((result) => {
+      .then((result: UserCredential) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        if (!credential) throw Error("No user found");
+        if (!credential) throw new Error("No user found");
         const token = credential.accessToken;
         const user = result.user;
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        const email = error.customData.email;
+        const email = error.customData?.email;
         const credential = GoogleAuthProvider.credentialFromError(error);
       });
   };
@@ -45,24 +50,30 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    const unSubscribe = () => {
-      auth.onAuthStateChanged((user) => {
-        if (user) {
-          setUser(user);
-        } else {
-          setUser(null);
-        }
-      });
-    };
+    const unSubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
 
     return () => unSubscribe();
-  }, [user]);
+  }, []);
 
   return (
-    <AuthContext.Provider value={undefined}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, logOut, signInWithGoogle }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
-export const UserAuth = () => {
-  return useContext(AuthContext);
+export const useUserAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error("useUserAuth must be used within an AuthContextProvider");
+  }
+  return context;
 };
+
+export default AuthContextProvider;
