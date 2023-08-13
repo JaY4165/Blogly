@@ -12,7 +12,7 @@ const Hero = ({ postsDataForHero }: { postsDataForHero: Node }) => {
           src={postsDataForHero.featuredImage.url}
           alt="background"
           className="rounded-xl"
-          loading="lazy"
+          priority
           width={1000}
           height={1000}
         />
