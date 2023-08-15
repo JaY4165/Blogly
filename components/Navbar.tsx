@@ -2,9 +2,11 @@
 
 import {
   NavigationMenu,
+  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
+  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
@@ -21,6 +23,19 @@ import { ModeToggle } from "./ui/themeToggleButton";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import LogInOutBtn from "./LogInOutBtn";
+import { cn } from "@/lib/utils";
+import React from "react";
+
+const components: { title: string; href: string }[] = [
+  {
+    title: "Posts",
+    href: "/posts",
+  },
+  {
+    title: "Authors",
+    href: "/authors",
+  },
+];
 
 const Navbar = () => {
   return (
@@ -43,24 +58,19 @@ const Navbar = () => {
           </NavigationMenuItem> */}
           <NavigationMenuItem>
             <Link href="/categories" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                <div className="flex items-center justify-center space-x-1">
-                  <p>Categories</p>
-                  <svg
-                    width="15"
-                    height="15"
-                    viewBox="0 0 15 15"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
-                      fill="currentColor"
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
+              <NavigationMenuLink>
+                <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
+                <NavigationMenuContent className="bg-[rgb(243,244,246,0.3)] rounded-xl dark:bg-black/30">
+                  <ul className="grid w-[10vw] text-center gap-3 p-4 grid-cols-1 ">
+                    {components.map((component) => (
+                      <ListItem
+                        key={component.title}
+                        title={component.title}
+                        href={component.href}
+                      ></ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
@@ -167,3 +177,29 @@ const mobileModal = () => {
     </Sheet>
   );
 };
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:bg-[rgb(243,244,246) dark:hover:bg-black/40",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  );
+});
+ListItem.displayName = "ListItem";
