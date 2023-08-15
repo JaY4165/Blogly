@@ -9,22 +9,21 @@ export const splitData = (dateToSplit: string) => {
 };
 
 const PostCard = ({ postsCardData }: { postsCardData: Edge[] }) => {
-
-  
-
   return (
     <>
       {postsCardData ? (
         postsCardData.map((post: any) => (
-          <div className="overflow-hidden" key={post.node.title}>
+          <div className="overflow-hidden w-full " key={post.node.title}>
             <Link href={`/post/${post?.node?.slug}`} className="group/grpitem">
-              <Image
-                src={post?.node?.featuredImage?.url}
-                alt="bg"
-                width={1000}
-                height={1000}
-                className="rounded-xl object-contain overflow-hidden"
-              />
+              <div className="w-full relative pt-[100%] overflow-hidden">
+                <Image
+                  src={post?.node?.featuredImage?.url}
+                  alt="bg"
+                  objectFit="cover"
+                  fill
+                  className="w-full max-h-full top-0 left-0 rounded-xl object-cover overflow-hidden"
+                />
+              </div>
 
               <div className="inline-flex justify-start space-x-8 pt-4 pb-2">
                 <div>
@@ -40,7 +39,7 @@ const PostCard = ({ postsCardData }: { postsCardData: Edge[] }) => {
               </div>
               <div className="flex flex-col space-y-1 md:space-y-3">
                 <div className="flex flex-row items-center justify-between">
-                  <h1 className="font-semibold text-lg md:text-xl">
+                  <h1 className="font-semibold text-lg md:text-xl line-clamp-1">
                     {post?.node?.title}
                   </h1>
                   <div className="pt-2">
