@@ -57,27 +57,27 @@ const Navbar = () => {
             </Link>
           </NavigationMenuItem> */}
           <NavigationMenuItem>
-            <Link href="/categories" legacyBehavior passHref>
-              <NavigationMenuLink>
-                <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
-                <NavigationMenuContent className="bg-[rgb(243,244,246,0.3)] rounded-xl dark:bg-black/30">
-                  <ul className="grid w-[10vw] text-center gap-3 p-4 grid-cols-1 ">
-                    {components.map((component) => (
-                      <ListItem
-                        key={component.title}
-                        title={component.title}
-                        href={component.href}
-                      ></ListItem>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuLink>
-            </Link>
+            <NavigationMenuLink>
+              <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
+              <NavigationMenuContent className="bg-[rgb(243,244,246,0.3)] rounded-xl dark:bg-black/30">
+                <ul className="grid w-[10vw] text-center gap-3 p-4 grid-cols-1 ">
+                  {components.map((component) => (
+                    <ListItem
+                      key={component.title}
+                      title={component.title}
+                      href={component.href}
+                    ></ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
 
         <div className="max-md:pl-4">
-          <h1 className=" text-lg sm:text-2xl tracking-[1em]">BLOGLY</h1>
+          <Link href={"/home"}>
+            <h1 className=" text-lg sm:text-2xl tracking-[1em]">BLOGLY</h1>
+          </Link>
         </div>
 
         <div className="md:hidden max-md:ml-auto max-md:pr-3">
@@ -143,11 +143,11 @@ const mobileNav = (
     <Link href="/" legacyBehavior passHref>
       Home
     </Link>
-    <Link href="/about" legacyBehavior passHref>
-      About
+    <Link href="/posts" legacyBehavior passHref>
+      Posts
     </Link>
-    <Link href="/categories" legacyBehavior passHref>
-      Categories
+    <Link href="/authors" legacyBehavior passHref>
+      Authors
     </Link>
   </>
 );
