@@ -1,5 +1,4 @@
 import Hero from "@/components/homeComponents/Hero";
-import { Pagination } from "@/components/homeComponents/Pagination";
 import Posts from "@/components/homeComponents/Posts";
 import { getAllPosts } from "@/graphql/services";
 import { Edge, Node } from "@/types/types";
@@ -31,9 +30,7 @@ export default async function Home() {
         <Posts postsData={otherPosts} />
       </section>
 
-      <div className="flex justify-center">
-        <Pagination />
-      </div>
+      
     </section>
   );
 }

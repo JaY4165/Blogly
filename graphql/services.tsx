@@ -27,6 +27,6 @@ export const getPostBySlug = async (slugName: string) => {
 
 export const getAllPostsForPagination = async () => {
   const response: any = await client.request(queryToGetAllPostsForPagination);
-  const res: any = response.postsConnection.edges;
+  const res: any = response.postsConnection;
   return res;
 };
