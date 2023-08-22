@@ -75,7 +75,7 @@ const Navbar = () => {
         </NavigationMenuList>
 
         <div className="max-md:pl-4">
-          <Link href={"/home"}>
+          <Link href={"/"}>
             <h1 className=" text-lg sm:text-2xl tracking-[1em]">BLOGLY</h1>
           </Link>
         </div>
