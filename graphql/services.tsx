@@ -1,5 +1,9 @@
 import { GraphQLClient } from "graphql-request";
-import { queryToGetAllPosts, queryToGetPostBySlug } from "./queries";
+import {
+  queryToGetAllPosts,
+  queryToGetAllPostsForPagination,
+  queryToGetPostBySlug,
+} from "./queries";
 import { Data, Edge, Post, PostsConnection } from "@/types/types";
 import Slug from "@/app/post/[slug]/page";
 
@@ -18,5 +22,11 @@ export const getPostBySlug = async (slugName: string) => {
     slug: slugName,
   });
   const res: Post = response.post;
+  return res;
+};
+
+export const getAllPostsForPagination = async () => {
+  const response: any = await client.request(queryToGetAllPostsForPagination);
+  const res: any = response.postsConnection.edges;
   return res;
 };

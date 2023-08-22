@@ -1,7 +1,10 @@
 import PostCard from "@/components/homeComponents/PostCard";
 import React from "react";
 
-function Posts() {
+async function Posts() {
+
+    
+
   return (
     <div>
       <h1>Posts</h1>

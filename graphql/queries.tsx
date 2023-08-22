@@ -59,7 +59,7 @@ export const queryToGetPostBySlug = gql`
   }
 `;
 
-export const getAllCategories = gql`
+export const queryToGetAllCategories = gql`
   query allCategories {
     categories {
       name
@@ -68,7 +68,7 @@ export const getAllCategories = gql`
   }
 `;
 
-export const getAllPostsForPagination = gql`
+export const queryToGetAllPostsForPagination = gql`
   query allPosts {
     postsConnection(first: 5) {
       edges {
