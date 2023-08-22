@@ -67,3 +67,33 @@ export const getAllCategories = gql`
     }
   }
 `;
+
+export const getAllPostsForPagination = gql`
+  query allPosts {
+    postsConnection(first: 5) {
+      edges {
+        node {
+          author {
+            id
+            name
+            description
+          }
+          createdAt
+          slug
+          title
+          excerpt
+          featuredImage {
+            url
+          }
+        }
+      }
+      pageInfo {
+        hasNextPage
+        pageSize
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
+    }
+  }
+`;
