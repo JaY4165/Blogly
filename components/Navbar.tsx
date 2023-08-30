@@ -57,21 +57,19 @@ const Navbar = () => {
             </Link>
           </NavigationMenuItem> */}
           <NavigationMenuItem>
-            <NavigationMenuLink>
-              <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-[rgb(243,244,246,0.3)] rounded-xl dark:bg-black/30">
-                <ul className="grid w-[10vw] text-center gap-3 p-4 grid-cols-1 ">
-                  {components.map((component) => (
-                    <ListItem
-                      key={component.title}
-                      title={component.title}
-                      href={component.href}
-                      className="hover:bg-slate-100"
-                    ></ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuLink>
+            <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
+            <NavigationMenuContent className="bg-[rgb(243,244,246,0.3)] rounded-xl dark:bg-black/30">
+              <ul className="grid w-[10vw] text-center gap-3 p-4 grid-cols-1 ">
+                {components.map((component) => (
+                  <ListItem
+                    key={component.title}
+                    title={component.title}
+                    href={component.href}
+                    className="hover:bg-slate-100"
+                  ></ListItem>
+                ))}
+              </ul>
+            </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>
 
