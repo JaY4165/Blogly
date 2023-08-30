@@ -25,9 +25,9 @@ export default async function Slug({
 
   return (
     <div className="px-5 sm:px-10 pt-20">
-      <div className="flex justify-between w-full">
-        <div className="flex pb-4 pl-1 items-center">
-          <Avatar>
+      <div className="flex justify-between w-full pb-4">
+        <div className="flex pl-1 items-center">
+          <Avatar className="">
             <AvatarImage
               className="object-cover"
               src={postData?.author?.profilePicture?.url}
@@ -35,7 +35,9 @@ export default async function Slug({
             />
             <AvatarFallback className="capitalize">CN</AvatarFallback>
           </Avatar>
-          <p className="pl-2 text-lg">{postData?.author?.name}</p>
+          <div className="self-center justify-center">
+            <p className="pl-2 text-lg">{postData?.author?.name}</p>
+          </div>
         </div>
         <div className="self-center pr-1">
           <p>{splitData(String(postData?.createdAt))}</p>
@@ -47,8 +49,8 @@ export default async function Slug({
         alt={postData?.title}
         className="rounded-xl"
         loading="lazy"
-        width={1000}
-        height={1000}
+        width={3000}
+        height={3000}
       />
 
       <div className="flex pt-5 items-center justify-start flex-row space-x-2">

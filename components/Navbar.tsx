@@ -66,6 +66,7 @@ const Navbar = () => {
                       key={component.title}
                       title={component.title}
                       href={component.href}
+                      className="hover:bg-slate-100"
                     ></ListItem>
                   ))}
                 </ul>

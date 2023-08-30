@@ -13,13 +13,15 @@ const PostCard = ({ postsCardData }: { postsCardData: Edge[] }) => {
     <>
       {postsCardData ? (
         postsCardData.map((post: any) => (
-          <div className="overflow-hidden w-full " key={post.node.title}>
+          <div
+            className="overflow-hidden w-full hover:bg-slate-100 dark:hover:bg-black/30 p-5 rounded-2xl duration-500 transition-all"
+            key={post.node.title}
+          >
             <Link href={`/post/${post?.node?.slug}`} className="group/grpitem">
               <div className="w-full relative pt-[100%] overflow-hidden">
                 <Image
                   src={post?.node?.featuredImage?.url}
                   alt="bg"
-                  objectFit="cover"
                   fill
                   className="w-full max-h-full top-0 left-0 rounded-xl object-cover overflow-hidden"
                 />
