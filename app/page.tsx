@@ -1,5 +1,6 @@
 import Hero from "@/components/homeComponents/Hero";
 import PostsContainer from "@/components/homeComponents/PostsContainer";
+import { Button } from "@/components/ui/button";
 import { getAllPosts } from "@/graphql/services";
 import { Edge, Node } from "@/types/types";
 // import { Edge } from "@/types";
@@ -29,6 +30,14 @@ export default async function Home() {
       <section className="grid grid-cols-1 sm:grid-cols-2 sm:grid-flow-row md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 xl:grid-flow-row pt-10 gap-14 pb-20">
         <PostsContainer postsData={otherPosts} />
       </section>
+      <div className="flex items-center justify-center">
+        <Button
+          variant={"secondary"}
+          className="dark:bg-white dark:text-black bg-black text-white hover:bg-black/80 dark:hover:bg-white/80"
+        >
+          See more
+        </Button>
+      </div>
     </section>
   );
 }
