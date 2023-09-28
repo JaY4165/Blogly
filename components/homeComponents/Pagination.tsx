@@ -4,7 +4,6 @@
 import { Button } from "../ui/button";
 
 export function Pagination(pageInfo: any) {
-  console.log(pageInfo.pageInformation);
 
   return (
     <div className="flex justify-between items-stretch gap-4 pb-16 w-full">

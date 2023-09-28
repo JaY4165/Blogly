@@ -6,7 +6,6 @@ import {
 } from "./queries";
 import { Data, Edge, Post } from "@/types/types";
 
-
 export const client = new GraphQLClient(
   String(process.env.HYGRAPH_CMS_ENDPOINT)
 );
@@ -25,8 +24,14 @@ export const getPostBySlug = async (slugName: string) => {
   return res;
 };
 
-export const getAllPostsForPagination = async () => {
-  const response: any = await client.request(queryToGetAllPostsForPagination);
+export const getAllPostsForPagination = async (
+  pageSize: number,
+  after: string
+) => {
+  const response: any = await client.request(queryToGetAllPostsForPagination, {
+    pageSize,
+    after,
+  });
   const res: any = response.postsConnection;
   return res;
 };
