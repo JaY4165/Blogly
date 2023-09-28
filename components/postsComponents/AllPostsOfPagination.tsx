@@ -9,7 +9,7 @@ function AllPostsOfPagination() {
         {/* <PostsContainer postsData={allPostsData.edges} /> */}
       </section>
       <div className="flex justify-center">
-        {/* <Pagination pageInformation={allPostsData.pageInfo} /> */}
+        <Pagination />
       </div>
     </div>
   );

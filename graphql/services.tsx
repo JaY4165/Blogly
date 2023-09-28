@@ -26,7 +26,7 @@ export const getPostBySlug = async (slugName: string) => {
 
 export const getAllPostsForPagination = async (
   pageSize: number,
-  after: string
+  after: string | null
 ) => {
   const response: any = await client.request(queryToGetAllPostsForPagination, {
     pageSize,
