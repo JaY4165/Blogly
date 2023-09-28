@@ -1,13 +1,17 @@
 import { GraphQLClient } from "graphql-request";
 import {
   queryToGetAllPosts,
-  queryToGetAllPostsForPagination,
   queryToGetPostBySlug,
+  queryToGetPostsForPagination,
 } from "./queries";
 import { Data, Edge, Post } from "@/types/types";
 
 export const client = new GraphQLClient(
   String(process.env.HYGRAPH_CMS_ENDPOINT)
+);
+
+export const cl = new GraphQLClient(
+  String(process.env.NEXT_PUBLIC_HYGRAPH_CMS_ENDPOINT)
 );
 
 export const getAllPosts = async () => {
@@ -24,14 +28,11 @@ export const getPostBySlug = async (slugName: string) => {
   return res;
 };
 
-export const getAllPostsForPagination = async (
-  pageSize: number,
-  after: string | null
-) => {
-  const response: any = await client.request(queryToGetAllPostsForPagination, {
-    pageSize,
-    after,
+export const getPostForPagination = async (first: number, after: string) => {
+  const response: any = await cl.request(queryToGetPostsForPagination, {
+    first: first,
+    after: after,
   });
-  const res: any = response.postsConnection;
+  const res: any = response;
   return res;
 };

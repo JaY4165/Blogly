@@ -68,9 +68,9 @@ export const queryToGetAllCategories = gql`
   }
 `;
 
-export const queryToGetAllPostsForPagination = gql`
-  query allPosts($pageSize: Int, $after: String) {
-    postsConnection(first: $pageSize, after: $after) {
+export const queryToGetPostsForPagination = gql`
+  query allPoststoPaginate($first: Int, $after: String) {
+    postsConnection(first: $first, after: $after) {
       edges {
         node {
           author {

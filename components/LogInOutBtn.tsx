@@ -23,14 +23,12 @@ const LogInOutBtn = () => {
 
   const handleSignOut = async () => {
     try {
-      console.log(user, "user logged out");
       logOut();
     } catch (error: unknown) {
       console.log(error);
     }
   };
 
-  console.log(user?.photoURL);
   return (
     <>
       {user ? (
