@@ -85,6 +85,10 @@ export const queryToGetAllPostsForPagination = gql`
           featuredImage {
             url
           }
+          categories {
+            name
+            slug
+          }
         }
       }
       pageInfo {

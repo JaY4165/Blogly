@@ -4,8 +4,8 @@ import {
   queryToGetAllPostsForPagination,
   queryToGetPostBySlug,
 } from "./queries";
-import { Data, Edge, Post, PostsConnection } from "@/types/types";
-import Slug from "@/app/post/[slug]/page";
+import { Data, Edge, Post } from "@/types/types";
+
 
 export const client = new GraphQLClient(
   String(process.env.HYGRAPH_CMS_ENDPOINT)
