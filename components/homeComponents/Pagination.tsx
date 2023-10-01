@@ -128,7 +128,9 @@ export function Pagination() {
               key={number}
               onClick={() => paginate(number)}
               className={`dark:hover:bg-white rounded-full dark:hover:text-black hover:bg-black hover:text-white ${
-                number === currentPage ? "bg-black text-white" : ""
+                number === currentPage
+                  ? "bg-black text-white dark:bg-white dark:text-black"
+                  : ""
               }`}
             >
               {number}

@@ -3,6 +3,7 @@ import PostsContainer from "@/components/homeComponents/PostsContainer";
 import { Button } from "@/components/ui/button";
 import { getAllPosts } from "@/graphql/services";
 import { Edge, Node } from "@/types/types";
+import Link from "next/link";
 // import { Edge } from "@/types";
 
 export default async function Home() {
@@ -31,12 +32,14 @@ export default async function Home() {
         <PostsContainer postsData={otherPosts} />
       </section>
       <div className="flex items-center justify-center">
-        <Button
-          variant={"secondary"}
-          className="dark:bg-white dark:text-black bg-black text-white hover:bg-black/80 dark:hover:bg-white/80"
-        >
-          See more
-        </Button>
+        <Link href={"/posts"}>
+          <Button
+            variant={"secondary"}
+            className="dark:bg-white dark:text-black bg-black text-white hover:bg-black/80 dark:hover:bg-white/80"
+          >
+            See more
+          </Button>
+        </Link>
       </div>
     </section>
   );
