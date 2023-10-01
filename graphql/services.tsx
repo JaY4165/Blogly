@@ -28,7 +28,10 @@ export const getPostBySlug = async (slugName: string) => {
   return res;
 };
 
-export const getPostForPagination = async (first: number, after: string) => {
+export const getPostForPagination = async (
+  first: number,
+  after: string | null
+) => {
   const response: any = await cl.request(queryToGetPostsForPagination, {
     first: first,
     after: after,

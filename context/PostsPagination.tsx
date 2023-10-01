@@ -1,19 +1,26 @@
+"use client";
+
 import { Edge } from "@/types/types";
 import React, { ReactNode, createContext, useContext, useState } from "react";
 
-// interface PostsPaginationContextValue {
-//     paginatedPosts: any[];
-//     setPaginatedPosts: React.Dispatch<React.SetStateAction<any[]>>;
-// }
+interface PostsPaginationContextValue {
+  paginatedPosts: Edge[];
+  setPaginatedPosts: React.Dispatch<React.SetStateAction<Edge[]>>;
+}
 
-const PostsPaginationContext = createContext<any | null>(null);
+const defaultContextValue: PostsPaginationContextValue = {
+  paginatedPosts: [],
+  setPaginatedPosts: () => {},
+};
+
+const PostsPaginationContext = createContext(defaultContextValue);
 
 export const PostsPaginationProvider = ({
   children,
 }: {
   children: ReactNode;
 }) => {
-  const [paginatedPosts, setPaginatedPosts] = useState<any[]>([]);
+  const [paginatedPosts, setPaginatedPosts] = useState<Edge[]>([]);
 
   return (
     <PostsPaginationContext.Provider

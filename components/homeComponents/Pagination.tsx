@@ -1,39 +1,54 @@
 "use client";
 
 import Link from "next/link";
-// import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getPostForPagination } from "@/graphql/services";
-import { after } from "node:test";
+import { usePostsPagination } from "@/context/PostsPagination";
 
 export function Pagination() {
   let path = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
-  let page: number = Number(searchParams.get("page"));
-  // const [currentPage, setCurrentPage] = useState<number>(1);
-  const [after, setAfter] = useState<string | "">("");
-  // const [before, setBefore] = useState<string | "">("");
-  const [posts, setPosts] = useState<any>([]);
+  const { setPaginatedPosts, paginatedPosts } = usePostsPagination();
+  const [after, setAfter] = useState<string | null>(null);
+  const [page, setPage] = useState<number>(1);
+  const [hasNextPg, setHasNextPg] = useState<boolean>(true);
   const first: number = 3;
 
   useEffect(() => {
+    setPage(Number(searchParams?.get("page")));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, path, router]);
+
+  useEffect(() => {
+    const abortController = new AbortController();
     async function getData() {
-      const pos = await getPostForPagination(first, after);
-      console.log(pos);
+      try {
+        const pos = await getPostForPagination(first, after);
+        setPaginatedPosts(pos?.postsConnection?.edges || []);
+        setAfter(pos?.postsConnection?.pageInfo?.endCursor || null);
+        setHasNextPg(pos?.postsConnection?.pageInfo?.hasNextPage || false);
+      } catch (error) {
+        console.log(error);
+      }
     }
     getData();
-  }, []);
+    return () => {
+      abortController.abort();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   return (
     <div className="flex justify-between items-stretch gap-4 pb-16 w-full">
       <div>
         <Button
           variant="ghost"
-          className="flex items-center gap-2 rounded-full dark:hover:bg-white dark:hover:text-black hover:bg-black hover:text-white"
+          className="flex items-center gap-2 rounded-full dark:hover:bg-white dark:hover:text-black hover:bg-black hover:text-white disabled:bg-[rgb(243,244,246)]"
           onClick={() => router.push(path + `?page=${page - 1}`)}
+          disabled={page === 1 ? true : false}
         >
           <svg
             width="15"
@@ -53,21 +68,12 @@ export function Pagination() {
         </Button>
       </div>
 
-      {/* <div className="flex items-center gap-2"> */}
-
-      {/* <Button
-          // {...getItemProps(1)}
-          className="dark:hover:bg-white rounded-full dark:hover:text-black hover:bg-black hover:text-white"
-        >
-          1
-        </Button> */}
-      {/* </div> */}
-
       <div>
         <Button
           variant="ghost"
           className="flex items-center gap-2 rounded-full dark:hover:bg-white dark:hover:text-black hover:bg-black hover:text-white"
           onClick={() => router.push(path + `?page=${page + 1}`)}
+          disabled={hasNextPg !== true ? true : false}
         >
           Next
           <svg
