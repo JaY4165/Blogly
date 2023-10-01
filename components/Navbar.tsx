@@ -29,7 +29,7 @@ import React from "react";
 const components: { title: string; href: string }[] = [
   {
     title: "Posts",
-    href: "/posts?page=1",
+    href: "/posts",
   },
   {
     title: "Authors",
@@ -142,7 +142,7 @@ const mobileNav = (
     <Link href="/" legacyBehavior passHref>
       Home
     </Link>
-    <Link href="/posts?page=1" legacyBehavior passHref>
+    <Link href="/posts" legacyBehavior passHref>
       Posts
     </Link>
     <Link href="/authors" legacyBehavior passHref>

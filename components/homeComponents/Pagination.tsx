@@ -1,54 +1,110 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "../ui/button";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getPostForPagination } from "@/graphql/services";
+import {
+  getPostForPagination,
+  getPostForPaginationNext,
+  getPostForPaginationPrev,
+} from "@/graphql/services";
 import { usePostsPagination } from "@/context/PostsPagination";
+import ReactPaginate from "react-paginate";
 
 export function Pagination() {
-  let path = usePathname();
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const { setPaginatedPosts, paginatedPosts } = usePostsPagination();
-  const [after, setAfter] = useState<string | null>(null);
-  const [page, setPage] = useState<number>(1);
-  const [hasNextPg, setHasNextPg] = useState<boolean>(true);
-  const first: number = 3;
+  const { setPaginatedPosts } = usePostsPagination();
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPosts, setTotalPosts] = useState<number>(0);
+  const [postsPerPage] = useState<number>(3);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    setPage(Number(searchParams?.get("page")));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams, path, router]);
-
-  useEffect(() => {
-    const abortController = new AbortController();
-    async function getData() {
+    const fetchBlogPosts = async () => {
       try {
-        const pos = await getPostForPagination(first, after);
-        setPaginatedPosts(pos?.postsConnection?.edges || []);
-        setAfter(pos?.postsConnection?.pageInfo?.endCursor || null);
-        setHasNextPg(pos?.postsConnection?.pageInfo?.hasNextPage || false);
-      } catch (error) {
-        console.log(error);
+        setLoading(true);
+        const allData = await getPostForPagination();
+        setTotalPosts(allData?.postsConnection?.pageInfo?.pageSize);
+        setBlogPosts(allData?.postsConnection?.edges);
+        setLoading(false);
+        console.log(totalPosts);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+        console.log(totalPosts, "total");
       }
-    }
-    getData();
-    return () => {
-      abortController.abort();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
+    fetchBlogPosts();
+  }, [currentPage, postsPerPage, setPaginatedPosts, totalPosts]);
+
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const previousPage = () => {
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const nextPage = () => {
+    console.log(postsPerPage);
+    if (currentPage !== Math.ceil(totalPosts / postsPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const pageNumbers: number[] = [];
+
+  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+  useEffect(() => {
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+    setPaginatedPosts(currentPosts);
+  }, [currentPage, blogPosts, setPaginatedPosts]);
 
   return (
-    <div className="flex justify-between items-stretch gap-4 pb-16 w-full">
-      <div>
+    <>
+      {/* <div className="pagination-container">
+        <ul className="pagination">
+          <Button
+            variant={"destructive"}
+            onClick={previousPage}
+            className="page-number"
+          >
+            Prev
+          </Button>
+          {pageNumbers.map((number) => (
+            <li
+              key={number}
+              onClick={() => paginate(number)}
+              className={
+                "page-number " + (number === currentPage ? "active" : "")
+              }
+            >
+              {number}
+            </li>
+          ))}
+          <Button
+            variant={"destructive"}
+            onClick={nextPage}
+            className="page-number"
+          >
+            Next
+          </Button>
+        </ul>
+      </div> */}
+
+      <div className="flex items-center gap-4 pb-16">
         <Button
           variant="ghost"
-          className="flex items-center gap-2 rounded-full dark:hover:bg-white dark:hover:text-black hover:bg-black hover:text-white disabled:bg-[rgb(243,244,246)]"
-          onClick={() => router.push(path + `?page=${page - 1}`)}
-          disabled={page === 1 ? true : false}
+          className="flex items-center gap-2 rounded-full dark:hover:bg-white dark:hover:text-black hover:bg-black hover:text-white"
+          onClick={previousPage}
         >
           <svg
             width="15"
@@ -66,14 +122,30 @@ export function Pagination() {
           </svg>
           Previous
         </Button>
-      </div>
+        <div className="flex items-center gap-2">
+          {pageNumbers.map((number) => (
+            <Button
+              key={number}
+              onClick={() => paginate(number)}
+              className={`dark:hover:bg-white rounded-full dark:hover:text-black hover:bg-black hover:text-white ${
+                number === currentPage ? "bg-black text-white" : ""
+              }`}
+            >
+              {number}
+            </Button>
+          ))}
 
-      <div>
+          {/* <Button
+            {...getItemProps(1)}
+            className="dark:hover:bg-white rounded-full dark:hover:text-black hover:bg-black hover:text-white dark:"
+          >
+            1
+          </Button> */}
+        </div>
         <Button
           variant="ghost"
           className="flex items-center gap-2 rounded-full dark:hover:bg-white dark:hover:text-black hover:bg-black hover:text-white"
-          onClick={() => router.push(path + `?page=${page + 1}`)}
-          disabled={hasNextPg !== true ? true : false}
+          onClick={nextPage}
         >
           Next
           <svg
@@ -92,6 +164,6 @@ export function Pagination() {
           </svg>
         </Button>
       </div>
-    </div>
+    </>
   );
 }

@@ -2,7 +2,9 @@ import { GraphQLClient } from "graphql-request";
 import {
   queryToGetAllPosts,
   queryToGetPostBySlug,
-  queryToGetPostsForPagination,
+  queryToGetPostsForPaginationData,
+  queryToGetPostsForPaginationNextData,
+  queryToGetPostsForPaginationPrevData,
 } from "./queries";
 import { Data, Edge, Post } from "@/types/types";
 
@@ -28,14 +30,32 @@ export const getPostBySlug = async (slugName: string) => {
   return res;
 };
 
-export const getPostForPagination = async (
+export const getPostForPaginationNext = async (
   first: number,
   after: string | null
 ) => {
-  const response: any = await cl.request(queryToGetPostsForPagination, {
+  const response: any = await cl.request(queryToGetPostsForPaginationNextData, {
     first: first,
     after: after,
   });
+  const res: any = response;
+  return res;
+};
+
+export const getPostForPaginationPrev = async (
+  first: number,
+  before: string | null
+) => {
+  const response: any = await cl.request(queryToGetPostsForPaginationPrevData, {
+    first: first,
+    before: before,
+  });
+  const res: any = response;
+  return res;
+};
+
+export const getPostForPagination = async () => {
+  const response: any = await cl.request(queryToGetPostsForPaginationData);
   const res: any = response;
   return res;
 };
