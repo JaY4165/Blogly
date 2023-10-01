@@ -60,12 +60,12 @@ export function Pagination() {
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
   useEffect(() => {
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
-
     setPaginatedPosts(currentPosts);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, blogPosts, setPaginatedPosts]);
 
   return (
