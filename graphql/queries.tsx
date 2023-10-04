@@ -101,3 +101,15 @@ export const queryToGetPostsForPaginationData = gql`
     }
   }
 `;
+
+export const queryToGetAllAuthors = gql`
+  query allAuthors {
+    authors {
+      name
+      profilePicture {
+        url
+      }
+      description
+    }
+  }
+`;

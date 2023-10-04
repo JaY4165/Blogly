@@ -1,5 +1,6 @@
 import { GraphQLClient } from "graphql-request";
 import {
+  queryToGetAllAuthors,
   queryToGetAllPosts,
   queryToGetPostBySlug,
   queryToGetPostsForPaginationData,
@@ -38,4 +39,9 @@ export const getPostForPaginationData = async (
   });
   const res: any = response;
   return res;
+};
+
+export const getAllAuthors = async () => {
+  const response: any = await client.request(queryToGetAllAuthors);
+  return response
 };
