@@ -40,7 +40,7 @@ const components: { title: string; href: string }[] = [
 const Navbar = () => {
   return (
     <header className="pt-5 max-sm:max-w-full max-md:flex max-md:items-center">
-      <NavigationMenu className="flex justify-start max-w-full   md:flex items-center md:justify-between ">
+      <NavigationMenu className="flex justify-start max-w-full  md:flex items-center md:justify-between">
         <NavigationMenuList className="max-md:hidden">
           <NavigationMenuItem>
             <Link href="/" legacyBehavior passHref>
