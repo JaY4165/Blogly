@@ -2,7 +2,7 @@
 
 import React from "react";
 import PostsContainer from "../homeComponents/PostsContainer";
-import { Pagination } from "../homeComponents/Pagination";
+import { Pagination } from "./Pagination";
 import { usePostsPagination } from "@/context/PostsPagination";
 
 function AllPostsOfPagination() {

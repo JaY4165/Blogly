@@ -11,6 +11,7 @@ export interface PostsConnection {
 }
 
 export interface Edge {
+    afterCursor: null;
     node: Node;
 }
 

@@ -3,8 +3,6 @@ import {
   queryToGetAllPosts,
   queryToGetPostBySlug,
   queryToGetPostsForPaginationData,
-  queryToGetPostsForPaginationNextData,
-  queryToGetPostsForPaginationPrevData,
 } from "./queries";
 import { Data, Edge, Post } from "@/types/types";
 
@@ -30,32 +28,14 @@ export const getPostBySlug = async (slugName: string) => {
   return res;
 };
 
-export const getPostForPaginationNext = async (
+export const getPostForPaginationData = async (
   first: number,
   after: string | null
 ) => {
-  const response: any = await cl.request(queryToGetPostsForPaginationNextData, {
+  const response: any = await cl.request(queryToGetPostsForPaginationData, {
     first: first,
     after: after,
   });
-  const res: any = response;
-  return res;
-};
-
-export const getPostForPaginationPrev = async (
-  first: number,
-  before: string | null
-) => {
-  const response: any = await cl.request(queryToGetPostsForPaginationPrevData, {
-    first: first,
-    before: before,
-  });
-  const res: any = response;
-  return res;
-};
-
-export const getPostForPagination = async () => {
-  const response: any = await cl.request(queryToGetPostsForPaginationData);
   const res: any = response;
   return res;
 };
