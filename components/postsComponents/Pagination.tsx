@@ -2,7 +2,6 @@
 
 import { getPostForPaginationData } from "@/graphql/services";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Button } from "../ui/button";
 import { usePostsPagination } from "@/context/PostsPagination";
 
 export function Pagination() {
@@ -45,23 +44,6 @@ export function Pagination() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetcher]);
 
-  // useEffect(() => {
-  //   fetcher(first, afterCursor)
-  //     .then((postsData) => {
-  //       console.log(postsData?.postsConnection?.pageInfo?.endCursor);
-  //       setAfterCursor(postsData?.postsConnection?.pageInfo?.endCursor);
-  //       setPaginatedPosts([
-  //         ...paginatedPosts,
-  //         ...postsData?.postsConnection?.edges,
-  //       ]);
-  //       if (postsData?.postsConnection?.pageInfo?.endCursor === null) {
-  //         console.log("äll posts done");
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [act, setPaginatedPosts]);
 
   return (
     <>

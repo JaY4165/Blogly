@@ -14,7 +14,7 @@ const PostCard = ({ postsCardData }: { postsCardData: Edge[] }) => {
       {postsCardData ? (
         postsCardData.map((post: any) => (
           <div
-            className="overflow-hidden w-full hover:bg-slate-100 dark:hover:bg-black/30 p-5 rounded-2xl duration-500 transition-all"
+            className="overflow-hidden w-full hover:bg-slate-100 dark:hover:bg-black/30 sm:p-5 sm:rounded-2xl duration-500 transition-all"
             key={post.node.title}
           >
             <Link href={`/post/${post?.node?.slug}`} className="group/grpitem">
