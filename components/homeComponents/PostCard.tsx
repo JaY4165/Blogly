@@ -79,7 +79,7 @@ const PostCard = ({ postsCardData }: { postsCardData: Edge[] }) => {
           </div>
         ))
       ) : (
-        <h1 className="text-xl">loading...</h1>
+        <h1 className="text-xl text-black">loading...</h1>
       )}
     </>
   );
