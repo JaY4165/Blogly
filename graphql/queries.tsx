@@ -105,6 +105,7 @@ export const queryToGetPostsForPaginationData = gql`
 export const queryToGetAllAuthors = gql`
   query allAuthors {
     authors {
+      id
       name
       profilePicture {
         url

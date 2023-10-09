@@ -85,3 +85,19 @@ export interface JSONChild {
 export interface ChildChild {
     text: string;
 }
+
+
+export interface AllAuthorsData {
+    authors: Author[];
+}
+
+export interface Author {
+    id: string;
+    name: string;
+    profilePicture: ProfilePicture;
+    description: string;
+}
+
+export interface ProfilePicture {
+    url: string;
+}
