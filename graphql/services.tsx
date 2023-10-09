@@ -43,5 +43,5 @@ export const getPostForPaginationData = async (
 
 export const getAllAuthors = async () => {
   const response: any = await client.request(queryToGetAllAuthors);
-  return response
+  return response;
 };

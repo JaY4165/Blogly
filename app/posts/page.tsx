@@ -3,7 +3,7 @@ import AllPostsOfPagination from "@/components/postsComponents/AllPostsOfPaginat
 
 async function Posts() {
   return (
-    <div>
+    <div className="px-5">
       <h1 className="text-center text-3xl pt-16 font-thin tracking-widest">
         ALL POSTS
       </h1>
