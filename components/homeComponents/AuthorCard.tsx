@@ -11,7 +11,7 @@ export function AuthorCard({ postAuData }: AuthorCardProps) {
   return (
     <>
       {authorDetails.map((author) => (
-        <Link key={author.id} href={`/author/${author?.id}`}>
+        <Link key={author?.id} href={`/author/${author?.id}`}>
           <div className="overflow-hidden w-full hover:bg-slate-100 cursor-pointer dark:hover:bg-black/30 sm:p-5 sm:rounded-2xl duration-500 transition-all">
             <div className="w-full relative pt-[100%] overflow-hidden">
               <Image
